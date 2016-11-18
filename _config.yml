@@ -9,16 +9,16 @@ kramdown:
 permalink:        pretty
 
 # Setup
-title:            Data Carpentry -for- Biologists
+title:            Data Carpentry -for- Ecologists
 description:      'Teaching the tools to get computers to do cool science'
-url:              http://www.datacarpentry.org/semester-biology
-baseurl:          /semester-biology
-email:            datacarpentrysemester@weecology.org
-feedbackurl:      https://docs.google.com/forms/d/e/1FAIpQLSdV_polFmoukgjcs1IC0Dd4iO1rdgwFnOds28xC_ma_z4tNIw
+url:              http://mvevans89.github.io/ECOL-8030
+baseurl:          /ECOL-8030
+email:            mvevans@uga.edu
+feedbackurl:      mailto:mvevans@uga.edu
 author:
-  name:           'Ethan White'
-  url:            https://twitter.com/ethanwhite
+  name:           'Michelle Evans'
+  url:            http://gsa.ecology.uga.edu/
 
 github:
-  repo:           https://github.com/datacarpentry/semester-biology
+  repo:           https://github.com/mvevans89/ECOL-8030
   #               Be sure the 'Issues' feature is activated in 'Settings'
