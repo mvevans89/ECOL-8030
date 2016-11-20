@@ -78,12 +78,12 @@ Knowledge of basic biology.
 The field of ecology is becoming increasingly quantitative and statistically driven; therefore, there is a need for researchers in the field to be trained in these skills.  The objective of this course is to provide training in computer programming and R fundamentals, to enable students to pursue more complex and specific analyses needed to conduct research in the field of ecology today.
 
 Students completing this course will be able to (adapted from [White 2016](http://www.datacarpentry.org/semester-biology/syllabus/)):
--	Create well-structured databases
--	Extract information from databases
--	Write simple computer programs in R
--	Automate data analysis, focusing on dynamic vs. hard coding
--	Apply these tools to address biological questions
--	Create reproducible analyses, including use of version control and git
+*	Create well-structured databases
+*	Extract information from databases
+*	Write simple computer programs in R
+*	Automate data analysis, focusing on dynamic vs. hard coding
+*	Apply these tools to address biological questions
+*	Create reproducible analyses, including use of version control and git
 
 
 ### Teaching Philosophy
