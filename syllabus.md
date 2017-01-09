@@ -47,6 +47,8 @@ at [{{ site.url}}]({{ site.baseurl }}/). Changes to the schedule will be posted 
 
 Email: [{{ page.email }}](mailto:{{ page.email }})
 
+Please sign-up on the [class e-mail list](https://docs.google.com/spreadsheets/d/1oFH3be5rmU1ozKk9-E0_8CZ3Vq0HUbYnhqEICa67sDo/edit?usp=sharing).
+
 
 ### Required Texts
 
