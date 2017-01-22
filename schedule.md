@@ -3,8 +3,8 @@ layout: page
 title: Class Schedule
 
 assignments: ['Planning Class', 'MLK Day',
-'Introduction to R and RStudio', 'Knitr', 'Working with Data',
-'Data Visualization', 'Break', 'Programming Fundamentals 1', 'Programming Fundamentals
+'Introduction to R and RStudio', 'Working with Data', 'Knitr',
+'Data Visualization', 'Programming Fundamentals 1', 'Programming Fundamentals
  2', 'Spring Break', 'Mid Semester Feedback', 'Version Control Basics',
  'Git with R', 'Working with Spatial Data','Working with Databases',
 'Advanced Topics', 'Additional Advanced Topic', 'Closure and Feedback']

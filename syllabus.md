@@ -49,6 +49,8 @@ Email: [{{ page.email }}](mailto:{{ page.email }})
 
 Please sign-up on the [class e-mail list](https://docs.google.com/spreadsheets/d/1oFH3be5rmU1ozKk9-E0_8CZ3Vq0HUbYnhqEICa67sDo/edit?usp=sharing).
 
+Also sign-up to [bring snacks](https://docs.google.com/spreadsheets/d/1TyT-CL50WMtOH7KFLn0Voudv_6XgwT0PNqm61NN78tI/edit?usp=sharing). We need two people for each day.
+
 
 ### Required Texts
 
