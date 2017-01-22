@@ -1,7 +1,7 @@
 ---
 layout: page
 element: assignment
-title: knitr
+title: Knitr
 language: R
 ---
 
