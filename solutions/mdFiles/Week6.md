@@ -9,6 +9,7 @@ This document contains the answers to the assignments from Week 6: Data Visualiz
 
 
 ```r
+#packages
 library(tidyverse)
 ```
 
@@ -32,6 +33,10 @@ library(tidyverse)
 
 ```r
 library(ggthemes)
+library(knitr)
+
+#Rmd options
+knitr::opts_chunk$set(cache=TRUE)
 ```
 
 
