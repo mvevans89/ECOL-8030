@@ -1,0 +1,288 @@
+---
+title: "data viz key"
+author: "Michelle Evans"
+date: '`r format(Sys.Date())`'
+output:
+  html_document: 
+    theme: flatly
+    keep_md: true
+  pdf_document: default
+---
+
+
+# Week 6 : Data Visualization
+
+This document contains the answers to the assignments from Week 6: Data Visualization of Ecology 8030.
+
+```{r setup and load packages}
+library(tidyverse)
+library(ggthemes)
+```
+
+
+## 1 : Basic Queries
+
+We didn't cover SQL in class, so don't worry about this one.
+
+![](http://www.mememaker.net/static/images/memes/4239449.jpg)
+
+\clearpage
+
+## 2 : Mass vs Metabolism
+
+
+```{r load data}
+size_mr_data <- data.frame(
+  body_mass = c(32000, 37800, 347000, 4200, 196500, 100000, 4290, 
+    32000, 65000, 69125, 9600, 133300, 150000, 407000, 115000, 
+    67000,325000, 21500, 58588, 65320, 85000, 135000, 20500, 1613,
+    1618),
+  metabolic_rate = c(49.984, 51.981, 306.770, 10.075, 230.073, 
+    148.949, 11.966, 46.414, 123.287, 106.663, 20.619, 180.150, 
+    200.830, 224.779, 148.940, 112.430, 286.847, 46.347, 142.863, 
+    106.670, 119.660, 104.150, 33.165, 4.900, 4.865))
+```
+
+### 2.1 A graph of body mass vs. metabolic rate
+
+```{r}
+# plain old graph
+ggplot(data=size_mr_data) + #call ggplot and dataframe
+  geom_point(aes(x=body_mass, y=metabolic_rate)) + #plot points
+  labs(x="Body Mass", y ="Metabolic Rate") #add axis labels
+
+
+#spruce it up tufte style (must have package ggthemes loaded)
+ggplot(data=size_mr_data) + #call ggplot and dataframe
+  geom_point(aes(x=body_mass, y=metabolic_rate)) + #plot points
+  labs(x="Body Mass", y ="Metabolic Rate") + #add axis labels 
+  theme_tufte() + #tufte theme
+  ggtitle("Plot 1.1. Metabolic Rate Increases with Body Mass") + #title
+  theme(plot.title = element_text(size=24)) #adjust title size
+```
+
+### 2.2 A graph of log(body mass) vs. log(metabolic rate)
+
+```{r}
+ggplot(data=size_mr_data) + 
+  geom_point(aes(x=log(body_mass), y=log(metabolic_rate))) +
+  labs(x="Log(Body Mass)", y ="Log(Metabolic Rate)") 
+```
+
+### 2.3 A graph of body mass vs. metabolic rate, with logarithmically scaled axes (this is different from number 2), and the point size set to 5
+
+```{r}
+ggplot(data=size_mr_data) + 
+  geom_point(aes(x=body_mass, y=metabolic_rate), size=5) +
+  labs(x="Log(Body Mass)", y ="Log(Metabolic Rate)") +
+  scale_x_log10() + #scale x axis
+  scale_y_log10() #scale y axis
+```
+
+## 3. Adult vs New born size
+
+### Load and Format the Data
+
+```{r}
+mammals <- read.csv("http://esapubs.org/archive/ecol/E084/093/Mammal_lifehistories_v2.txt", 
+                    sep="\t", #tab seperated
+                    nrows=1440, #only want 1440 rows
+                    na.strings = c("-999", "-999.00")) #drop NAs
+
+#check out head of dataframe
+head(mammals)
+#also column names
+colnames(mammals)
+```
+
+### 3.1 Adult vs. Newborn Mass
+
+```{r}
+base3 <- ggplot(data=mammals) +
+  geom_point(aes(x=mass.g., y=newborn.g.)) + 
+  labs(x="Adult Mass (g)", y= "Newborn Mass (g)") +
+  theme_bw() #closer to base theme
+```
+
+Note the warning message regarding the NAs in the dataframe.
+
+### 3.2 Adult vs. Newborn Mass w/ Log-Scale Axes
+
+```{r}
+ggplot(data=mammals) +
+  geom_point(aes(x=mass.g., y=newborn.g.)) + 
+  labs(x="Adult Mass (g)", y= "Newborn Mass (g)") + #axis labels
+  theme_bw() + 
+  scale_x_log10() + #log scale
+  scale_y_log10()  #log scale#
+```
+
+### 3.3 Add color by Order
+
+```{r}
+ggplot(data=mammals) +
+  geom_point(aes(x=mass.g., y=newborn.g., color=order)) + #add color in aes
+  labs(x="Adult Mass (g)", y= "Newborn Mass (g)") + #axis labels
+  theme_bw() + 
+  scale_x_log10() + #log scale
+  scale_y_log10() #log scale
+```
+
+### 3.4 Facet Wrap by Order
+
+```{r}
+ggplot(data=mammals) +
+  geom_point(aes(x=mass.g., y=newborn.g.)) + #add color in aes
+  labs(x="Adult Mass (g)", y= "Newborn Mass (g)") + #axis labels
+  theme_bw() + 
+  scale_x_log10() + #log scale
+  scale_y_log10() + #log scale
+  facet_wrap(~order) #facet wrap by order
+```
+
+### 3.5 Add Smooth Regression Line
+
+```{r}
+ggplot(data=mammals) +
+  geom_point(aes(x=mass.g., y=newborn.g.)) + #add color in aes
+  labs(x="Adult Mass (g)", y= "Newborn Mass (g)") + #axis labels
+  theme_bw() + 
+  scale_x_log10() + #log scale
+  scale_y_log10() + #log scale
+  facet_wrap(~order) + #facet wrap by order
+  geom_smooth(method="lm", aes(x=mass.g., y=newborn.g.))
+```
+
+Remember you can also name a plot as an object, and then add things to that "base" plot.
+
+## 4. Sexual Dimorphism Exploration
+
+```{r load bird data}
+birds <- read.csv("http://www.esapubs.org/archive/ecol/E088/096/avian_ssd_jan07.txt", 
+                  sep="\t",
+                  na.strings = c("-999", "-999.00", "-999.0"))
+colnames(birds) #check out column names
+```
+
+### 4.1 Histogram
+
+```{r}
+ggplot(data=birds) + 
+  geom_histogram(aes(x=F_mass)) + 
+  labs(x="Female Mass (g)")
+```
+
+### 4.2 Log Histogram
+
+```{r}
+ggplot(data=birds) + 
+  geom_histogram(aes(x=log(F_mass)), fill="dodgerblue") + #dodger blue is WAAAY better than blue
+  labs(x="Female Mass (g)")
+```
+
+### 4.3 Male & Female Distribution
+
+```{r}
+ggplot(data=birds) + 
+  geom_histogram(aes(x=log(F_mass)), fill="blue", alpha=0.3) + # add alpha for transparency
+  labs(x="Mass (g)") + 
+  geom_histogram(aes(x=log(M_mass)), fill="red", alpha=0.3)
+```
+
+### 4.4 Facet Wrap
+
+```{r}
+ggplot(data=birds) + 
+  geom_histogram(aes(x=log(F_mass)), alpha=0.3) + # add alpha for transparency
+  labs(x="Mass (g)") + 
+  geom_histogram(aes(x=log(M_mass)),alpha=0.3) + 
+  facet_wrap(~Family)
+```
+
+### 4.5 Wing Size
+
+```{r}
+ggplot(data=birds) + 
+  geom_histogram(aes(x=Unsexed_wing)) + 
+  labs(x="Wing Size") + 
+  facet_wrap(~Family)
+```
+
+## 5. Sexual Dimorphism
+
+### 5.1 Select Large Families
+
+```{r}
+
+#this code selects families of birds with more than 25 species in the dataframe
+large_n_families <- birds %>%
+   filter(!is.na(M_mass), !is.na(F_mass)) %>%
+   group_by(Family) %>%
+   summarize(num_species = n()) %>%
+   filter(num_species>25)
+
+#inner join with original dataset to subset those with more than 25 species
+birdFamilies <- inner_join(birds, large_n_families, by="Family")
+
+#plot male and female mass from large families
+ggplot(data=birdFamilies) + 
+  geom_histogram(aes(x=log(F_mass)), fill="blue", alpha=0.3) + # add alpha for transparency
+  labs(x="Mass (g)") + 
+  geom_histogram(aes(x=log(M_mass)), fill="red", alpha=0.3) +
+  facet_wrap(~Family)
+
+```
+
+### 5.2 Calculate Difference in Mass between Male and Female
+
+```{r}
+#calculate difference using mutate
+birdFamilies <- birdFamilies %>%
+  mutate(massDiff=(log(F_mass) - log(M_mass))/log(F_mass))
+
+#plot in a single histogram
+ggplot(data=birdFamilies) + 
+  geom_histogram(aes(x=massDiff)) + 
+  labs(x="Relative Mass") +
+  geom_vline(xintercept = 0)
+```
+
+Note that to get it the same as the result online, you need to take the log difference.
+
+### 5.3 Histogram per Family
+
+```{r}
+ggplot(data=birdFamilies) + 
+  geom_histogram(aes(x=massDiff)) + 
+  labs(x="Relative Mass") + 
+  geom_vline(xintercept = 0) +
+  facet_wrap(~Family)
+```
+
+# Cool Thing I Learned this Week
+
+The thing I learned this week was `facet-wrap`, which seems to be a much easier way to quickly visualize factors in data than seperately plotting each one in a for loop or apply statement (which is how I normally go about it in base R).
+
+I also found a package called [`emoGG`](https://github.com/dill/emoGG) that allows you to plot emojis on ggplot charts!
+
+Here it is plotting egg mass against clutch size:
+
+```{r}
+library(devtools)
+install_github("dill/emoGG")
+library(emoGG)
+
+birdPlotdata <- birdFamilies %>%
+  filter(!is.na(Egg_mass), !is.na(Clutch_size)) %>%
+  filter(Family>=140) #limit families for simplicity
+
+emoji_search("bird") #search for bird emojis
+
+ggplot(data=birdPlotdata, aes(x=Egg_mass, y=Clutch_size)) +
+  geom_emoji(emoji="1f423") + #hatching chick emojis
+  facet_wrap(~Family) +
+  labs(x="Egg mass (g)", y = "Clutch Size") +
+  theme_dark() #dark theme so you can see chicks
+```
+
+
