@@ -19,4 +19,4 @@ exercises: ['Basic Queries Review', 'Mass vs Metabolism', 'Adult vs Newborn Size
 {% include assignment.html %}
 
 
-Check out the [solution]("{{ site.baseurl}}/solutions/mdFiles/Week6.html")
+Check out the [solution]({{ site.baseurl}}/solutions/mdFiles/Week6.html)
