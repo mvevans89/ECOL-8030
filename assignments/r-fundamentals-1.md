@@ -18,3 +18,5 @@ exercises: ['Use and Modify', 'Writing Functions', 'Nested Functions', 'Choice O
 {% include reading.html %}
 
 {% include assignment.html %}
+
+Check out the [solution]({{ site.baseurl}}/solutions/mdFiles/Week7.html)
