@@ -10,9 +10,11 @@ exercises: ['for Loop', 'stringr', 'DNA or RNA', 'Multiple Files', 'Data Managem
 
 > Following this assignment students should be able to:
 >
-> - use `for` loops to automate function operations 
+> - use `for` loops to automate function operations
 > - understand how to decompose complex problems
 
 {% include reading.html %}
 
 {% include assignment.html %}
+
+Check out the [solution]({{ site.baseurl}}/solutions/mdFiles/Week8.html)

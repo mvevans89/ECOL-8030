@@ -19,7 +19,7 @@ This document contains the solutions for Data Carpentry for Ecologists (ECOL 803
 ## 1.1
 ```{r basic function}
 get_mass_from_length_theropoda <- function(length){
-  #takes the length of a theropoda (cool dinosaur) and returns its mass based on an allometric approach
+  # takes the length of a theropoda (cool dinosaur) and returns its mass based on an allometric approach
   #' @param length length of the dinosaur in meters
   #' @return mass of the dinosaur in kg
   mass <- 0.73 * length ** 3.63
@@ -37,8 +37,8 @@ get_mass_from_length_theropoda(length=16)
 get_mass_from_length <- function(length, a,b){
     #takes the length of any dinosaur and returns its mass based on an allometric approach (mass= a * length ^ b)
   #' @param length length of the dinosaur in meters
-  #' @a scaling of allometric equation
-  #' @b exponent in allometric equation
+  #' @param a scaling of allometric equation
+  #' @param b exponent in allometric equation
   #' @return mass of the dinosaur in kg
   mass <- a * length ** b
   return(mass)
@@ -110,7 +110,10 @@ x>y
 4.  2 * x + 0.2 is equal to y
 
 ```{r}
-2*x +0.2 ==y 
+y == ((2*x) + 0.2) #doesnt' work becuase they are floating 
+
+isTRUE(all.equal(y, ((2*x) + 0.2)))
+
 ```
 
 5.  dna1 is the same as dna2
@@ -165,7 +168,7 @@ str_length(dna1) + str_length(dna2) >=30
 13. The GC content (which is always a percentage) of dna1 is not the same as the GC content of dna2
 
 ```{r}
-(str_count(dna1, "g")+str_count(dna1,"c"))/str_length(dna1) != (str_count(dna2, "g")+str_count(dna2,"c"))/str_length(dna2)
+str_count(dna1, ("g|c"))/str_length(dna1) != (str_count(dna2, "g")+str_count(dna2,"c"))/str_length(dna2)
 ```
 
 #5. Complete the Code
