@@ -1,7 +1,7 @@
 ---
 layout: page
 element: reading
-title: Working with Spatial Data
+title: Working with Raster Data
 language: R
 ---
 
@@ -14,6 +14,7 @@ language: R
   * Integrate `raster` and `vector` data
 
 * Readings
-  * [NEON Vector Tutorial](http://neondataskills.org/tutorial-series/vector-data-series/)
 
-* Visiting Speaker: Ashton Griffin (Park Lab)
+  * [NEON Raster Tutorial](http://neondataskills.org/tutorial-series/raster-data-series/)
+
+* Visiting Speaker: JP Schmidt

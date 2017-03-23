@@ -19,7 +19,7 @@ This document contains the solutions for Data Carpentry for Ecologists (ECOL 803
 For this, you need a function from last week.
 
 ```{r}
-get_mass_from_length <- function(length, a,b){
+get_mass_from_length <- function(length, a, b){
   #' allometric mass equation
   #' takes the length of any dinosaur and returns its mass based on an allometric         approach (mass= a * length ^ b)
   #' @param length length of the dinosaur in meters
@@ -34,18 +34,19 @@ get_mass_from_length <- function(length, a,b){
 Now we can run a for-loop over the lengths
 
 ```{r}
-lengths <- c(10.1, 9.5, 11.2, 9.8, 10.4, 12.0, 11.5, 9.5, 9.8, 10.0, 10.7, 10.2, 11.9, 9.7, 11.2, 11.8, 10.7)
+dinoLength <- c(10.1, 9.5, 11.2, 9.8, 10.4, 12.0, 11.5, 9.5, 9.8, 10.0, 10.7, 10.2, 11.9, 9.7, 11.2, 11.8, 10.7)
 
-for (i in lengths){
- mass <- get_mass_from_length(length=i, a=10.95, b=2.64)
- print(mass)
+dinos <- c()
+for (i in 1:length(dinoLength)){
+  dinos[i] <- get_mass_from_length(length=dinoLength[i], a=10.95, b=2.64)
 }
 ```
 
 Or just try applying the function to a vector:
 
 ```{r}
-get_mass_from_length(length=lengths, a=10.95, b=2.64)
+fakeA <- seq(1:8)
+get_mass_from_length(length=dinoLength[rep(1:8,2)], a=fakeA, b=2.64)
 ```
 
 They are the same!
@@ -93,8 +94,7 @@ We also need to store the results in a new vector.
 content <- c() #create empty object to write too. not 100% sure this is necessary
 
 for (i in 1:nrow(sequences)){ #iterate over each row
-  seq <- sequences[i,1]  # select out the sequence to use in this for loop
-  content[i]<- getGCcontent(seq) #write to the appropriate spot in the empty object
+  content[i]<- getGCcontent(sequence=sequences[i,1]) #write to the appropriate spot in the empty object
 }
 ```
 
@@ -161,7 +161,7 @@ for (sq in sequences){
 ## 3.2 Use an `sapply` statement
 
 ```{r}
-sapply(sequences, dna_or_rna)
+sapply(sequences, dna_or_rna, USE.NAMES = F)
 ```
 
 #4. Multiple Files
@@ -258,7 +258,8 @@ earsProcessed <- ears %>%
   rowwise() %>% #apply this function by row
   mutate(size=earSort(earlength)) %>% #add a new column sorting using the earSort function
   mutate(GC=getGCcontent(dnaseq)) %>% #create column of GC content 
-  select(-earlength, - dnaseq)
+  select(-earlength, - dnaseq) %>%
+  ungroup()
 
 earsProcessed
 ```

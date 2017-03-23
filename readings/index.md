@@ -6,6 +6,7 @@ title: Readings
 ### Git
 
 * [Git with R](R-git)
+* [Collaboration in Git](R-gitCollaboration)
 
 ### R
 

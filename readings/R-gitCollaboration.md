@@ -1,7 +1,7 @@
 ---
 layout: page
 element: reading
-title: Version Control Basics
+title: Collaboration in Git
 language: R
 ---
 
