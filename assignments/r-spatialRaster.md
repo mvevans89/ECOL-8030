@@ -18,3 +18,5 @@ exercises: ['Canopy Height from Space', 'Phenology from Space']
 {% include reading.html %}
 
 {% include assignment.html %}
+
+In class, JP went through some of his code from [Schmidt et al. 2017](https://wwwnc.cdc.gov/eid/article/23/3/16-0101_article).  I've uploaded it to our site [here]({{ site.baseurl}}/materials/ebola.spillover.intensity.final.Rmd).

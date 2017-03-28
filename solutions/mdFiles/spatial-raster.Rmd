@@ -1,0 +1,41 @@
+---
+title: "Spatial Data - Leaflet"
+author: "Michelle Evans"
+date: "3/26/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Leaflet
+
+(Leaflet)[http://leafletjs.com/] is a javascript library that makes really cool interactive maps that allow to pan and zoom, and add tool tips to points. We're not learning javascript in this class, but luckily there is an R package that allows us to access the power of leafletjs straight from RStudio, aptly named `leaflet`.
+
+```{r}
+library(leaflet)
+library(rgdal)
+#load data
+waffles <- readOGR("data/Wafflehouses", "Wafflehouses")
+
+#get sweet waffle house icon
+waffleIcons <- icons(
+  iconUrl = "wafflogo.png",
+iconWidth=20, iconHeight=20
+)
+
+leaflet(data=waffles) %>%
+  addTiles(group="Open Street Map") %>%
+  addProviderTiles(providers$Stamen.Toner, group = "Toner") %>%
+  addProviderTiles(providers$Stamen.TonerLite, group = "Toner Lite") %>%
+  addMarkers(label=~as.character(waffles@data$Name), icon=waffleIcons, group="Waffle Houses") %>%
+  addLayersControl(
+    baseGroups=c("Open Street Map", "Toner", "Toner Lite"),
+    overlayGroups = c("Waffle Houses"),
+    options=layersControlOptions(collapsed=F)
+  )
+```
+
+It can also be used for polygon and raster data. Pop ups can also be added with additional information. I like to use it to quickly check my data and interactively visualize it, something that ArcGIS allows you to do that is somewhat difficult in R.
+

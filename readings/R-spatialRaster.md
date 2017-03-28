@@ -10,11 +10,10 @@ language: R
   * `raster`
   * Raster math
   * Plotting spatial images
-  * Shapefile import
   * Integrate `raster` and `vector` data
 
-* Readings
+* Exercises
 
   * [NEON Raster Tutorial](http://neondataskills.org/tutorial-series/raster-data-series/)
 
-* Visiting Speaker: JP Schmidt
+* **Visiting Speaker: JP Schmidt (Research Scientist)**

@@ -16,4 +16,4 @@ language: R
 * Readings
   * [NEON Vector Tutorial](http://neondataskills.org/tutorial-series/vector-data-series/)
 
-* Visiting Speaker: Ashton Griffin (Park Lab)
+* **Visiting Speaker: Ashton Griffin (Park Lab)**
