@@ -13,4 +13,6 @@ exercises: []
 > - be familiar with the LaTeX language
 > - understand the basics of constructing a LaTex document  
 
+{% include reading.html %}
+
 {% include assignment.html %}
